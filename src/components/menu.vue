@@ -4,6 +4,9 @@
 
 <template>
   <div class="ui top attached menu">
+    <a class="item" v-link="{ path: '/' }" @click="goHome()">
+      <i class="home icon"></i>
+    </a>
     <div class="ui dropdown item">
       <div class="text">{{menuText}}</div>
       <i class="dropdown icon"></i>
@@ -37,6 +40,12 @@
     data() {
       return {
         menuText: "Home"
+      }
+    },
+    methods: {
+      goHome: function() {
+        $('.ui.dropdown')
+          .dropdown('set selected', "Home");
       }
     },
     ready() {

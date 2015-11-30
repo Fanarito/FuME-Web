@@ -51,12 +51,30 @@
       return {
         showId: this.$route.params.id,
         loading: true,
+        info: {},
         episodesLoading: false,
         selectedSeason: false,
         episodes: []
       }
     },
     methods: {
+      loadInfo: function () {
+        var $this = this;
+        // Show the loader
+        this.loading = true;
+        // Make sure the route is the new route
+        this.showId = this.$route.params.id;
+        // Make sure there are no left over episodes if you have already viewed this view
+        this.episodes = [];
+        // Get show info
+        $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
+          format: 'json'
+        }, function(json, textStatus) {
+          $this.info = json.data.info;
+          $this.seasons = json.data.seasons;
+          $this.loading = false;
+        });
+      },
       getEpisodes: function(season, e) {
         $('.ui.large.divided.selection.list > .item').removeClass('active');
         $(e.target).toggleClass('active');
@@ -70,31 +88,18 @@
         $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId + '/' + season, {
           format: 'json'
         }, function(json, textStatus) {
-          // $this.episodes = [];
           json.forEach(function(element, index){
             $this.episodes.push(element);
           });
           $this.selectedSeason = true;
           $this.episodesLoading = false;
-          console.log($this.episodes);
         });
       }
     },
     attached() {
-      var $this = this;
-      // Get show info
-      $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
-        format: 'json'
-      }, function(json, textStatus) {
-        $this.info = json.data.info;
-        $this.seasons = json.data.seasons;
-        $this.loading = false;
-      });
+      this.loadInfo();
     },
     detached() {
-      this.info = {};
-      this.seasons = [];
-      this.loading = true;
     }
   }
 </script>
