@@ -6,7 +6,7 @@
   <div class="three wide column">
     <div class="ui link card">
       <div class="image">
-        <img v-bind:src="show.image.original">
+        <img :src="show.image.original">
       </div>
       <div class="content">
         <a class="header">{{ show.name }}</a>
@@ -16,7 +16,7 @@
           </span>
         </div>
         <div class="description">
-          <div class="ui star rating"></div>
+          <div class="ui star rating {{show.id}}"></div>
         </div>
       </div>
     </div>
@@ -41,10 +41,10 @@
       }
     },
     ready() {
-      $('.rating')
+      $('.' + this.show.id)
         .rating({
-          initialRating: Math.floor(this.$data.show.rating.average)/2,
-          maxRating: 5
+          initialRating: Math.floor(this.$data.show.rating.average),
+          maxRating: 10
         });
     }
   }

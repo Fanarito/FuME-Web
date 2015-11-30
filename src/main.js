@@ -21,6 +21,13 @@ router.map({
   '/shows/:id': {
     name: 'showdetail',
     component: require('./views/showDetail')
+  },
+  '/movies': {
+    component: require('./views/movies')
+  },
+  '/movies/:id': {
+    name: 'moviedetail',
+    component: require('./views/movieDetail')
   }
 })
 

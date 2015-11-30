@@ -42,7 +42,6 @@
     ready() {
       var path = this.$route.path;
       path = path.split('/')
-      console.log(path);
 
       if (path[1] === "shows") {
         $('.ui.dropdown')
