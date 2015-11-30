@@ -37,7 +37,6 @@
     },
     attached() {
       var $this = this;
-      console.log(this.$route.params.id);
       $.getJSON('http://django.fanarito.duckdns.org/api/movie/' + this.$route.params.id, {
         format: 'json'
       }, function(json, textStatus) {

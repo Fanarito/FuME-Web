@@ -38,13 +38,10 @@
         format: 'json'
       }, function(json, textStatus) {
         $this.movies = [];
-        console.log(json.data);
         json.data.forEach(function(element, index) {
-          console.log(element);
           $this.movies.push(element);
         });
         $this.loading = false;
-        console.log($this.movies);
       });
     },
     detached() {
