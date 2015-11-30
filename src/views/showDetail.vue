@@ -4,16 +4,18 @@
   }
 
   .ui.active.inverted.dimmer.episodes {
-    height: 300px;
+    height: 70px;
     margin-top: 15px;
   }
 </style>
 
 <template>
+  <!-- Loading animation -->
   <div v-if="loading" class="ui active inverted dimmer">
     <div class="ui medium text loader">Loading</div>
   </div>
-  <div v-if="!loading" class="ui internally celled grid">
+  <div v-if="!loading" class="ui internally celled centered grid">
+    <!-- Show info -->
     <div class="row">
       <div class="four wide column">
         <img v-bind:src="info.image.original" alt="" class="ui medium image">
@@ -25,17 +27,33 @@
         </p>
       </div>
       <div class="four wide column">
-        <div class="ui large divided selection list">
+        <div class="ui huge divided selection list">
           <div v-for="season in seasons" @click="getEpisodes(season.season, $event)" class="item">Season {{ season.season }}</div>
         </div>
       </div>
     </div>
+
     <div class="row">
+      <!-- Loading animation -->
       <div v-if="episodesLoading" class="ui active inverted dimmer episodes">
         <div class="ui medium text loader">Loading</div>
       </div>
-      <div v-show="selectedSeason">
-        <p v-for="episode in episodes" track_by="id">{{episode.name}}</p>
+      <!-- Episode cards -->
+      <div v-show="selectedSeason" class="eight wide column">
+        <div class="ui centered grid">
+          <div v-for="episode in episodes" class="mobile sixteen wide eight wide computer column">
+            <div class="ui fluid link card" @click="selectEpisode(episode)">
+              <div class="content">
+                <div class="header">{{episode.name}}</div>
+                <div class="meta">Season {{episode.season}} - Episode {{episode.number}}</div>
+                <!--div class="description">{{episode.summary}}</div-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="selectedEpisode" class="eight wide column">
+        <episodedetail v-on:close_episode_detail :episode="selectedEpisode"></episodedetail>
       </div>
     </div>
   </div>
@@ -45,7 +63,7 @@
   var $ = window.jQuery;
   export default {
     components: {
-      seasoncard: require('../components/season_card')
+      episodedetail: require('../components/episode_detail')
     },
     data() {
       return {
@@ -54,11 +72,12 @@
         info: {},
         episodesLoading: false,
         selectedSeason: false,
-        episodes: []
+        episodes: [],
+        selectedEpisode: false
       }
     },
     methods: {
-      loadInfo: function () {
+      loadInfo: function() {
         var $this = this;
         // Show the loader
         this.loading = true;
@@ -88,18 +107,28 @@
         $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId + '/' + season, {
           format: 'json'
         }, function(json, textStatus) {
-          json.forEach(function(element, index){
+          json.forEach(function(element, index) {
             $this.episodes.push(element);
           });
           $this.selectedSeason = true;
           $this.episodesLoading = false;
         });
+      },
+      selectEpisode: function(episode) {
+        console.log(episode);
+        this.selectedEpisode = episode;
+      }
+    },
+    events: {
+      close_episode_detail: function () {
+        this.selectedEpisode = null;
       }
     },
     attached() {
       this.loadInfo();
     },
     detached() {
+      this.selectedEpisode = null;
     }
   }
 </script>

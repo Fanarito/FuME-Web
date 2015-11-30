@@ -25,6 +25,7 @@
 
 <script>
   var $ = window.jQuery;
+
   export default {
     props: {
       movie: {

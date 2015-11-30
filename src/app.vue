@@ -1,10 +1,11 @@
+<style scoped>
+</style>
+
 <template>
   <menu dropdownText="Home">
   </menu>
   <div class="ui bottom attached segment">
-    <router-view
-      keep-alive
-    ></router-view>
+    <router-view keep-alive></router-view>
   </div>
 </template>
 
@@ -17,12 +18,12 @@
       return {
         dropdownText: 'Home'
       }
-      },
-      methods: {
+    },
+    methods: {
 
-      },
-      ready() {
-        
-      }
+    },
+    ready() {
+
+    }
   }
 </script>

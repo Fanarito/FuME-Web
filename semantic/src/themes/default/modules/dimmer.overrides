@@ -1,3 +1,4 @@
 /*******************************
          Theme Overrides
 *******************************/
+@blurredEndFilter: ~"blur(20px) grayscale(0.7)";
