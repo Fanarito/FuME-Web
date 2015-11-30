@@ -1,11 +1,14 @@
 <style scoped>
-  #showView {
-    width: 100%;
+  .ui.active.inverted.dimmer {
+    height: 500px;
   }
 </style>
 
 <template>
-  <div class="ui mobile reversed equal width stackable grid">
+  <div v-if="loading" class="ui active inverted dimmer">
+    <div class="ui medium text loader">Loading</div>
+  </div>
+  <div v-if="!loading" class="ui mobile reversed equal width stackable grid">
     <div class="column">
       <div class="ui stackable grid">
         <tvcard v-for="show in shows" :show="show" v-link="{ name: 'showdetail', params: { id: show.id } }"></tvcard>
@@ -22,24 +25,13 @@
     },
     data() {
       return {
-        shows: [
-          {
-            name: 'undefined',
-            summary: 'undefined',
-            short_summary: 'undefined',
-            image: {
-              original: 'undefined'
-            },
-            premiered: 'undefined',
-            rating: 5
-          }
-        ]
+        loading: true
       }
     },
     methods: {
 
     },
-    created() {
+    attached() {
       var $this = this;
       $.getJSON('http://django.fanarito.duckdns.org/api/show/', {
         format: 'json'
@@ -48,10 +40,11 @@
         json.data.forEach(function(element, index){
           $this.shows.push(element);
         });
+        $this.loading = false;
       });
     },
-    ready() {
-      console.log(this.show);
+    detached() {
+      this.shows = []
     }
   }
 </script>
