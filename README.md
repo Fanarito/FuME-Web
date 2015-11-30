@@ -1,6 +1,7 @@
 # FuME-Web
 
 Web interface for FuME backend. In very early development.
+Testing available at http://node.fanarito.duckdns.org
 
 Projects used:
 * Semantic-UI
