@@ -3,8 +3,7 @@
 </style>
 
 <template>
-  <div class="three wide column">
-    <div class="ui card">
+    <div class="card">
       <div class="image">
         <img :src="movie.Poster">
       </div>
@@ -20,7 +19,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

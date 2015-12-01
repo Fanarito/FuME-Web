@@ -3,7 +3,7 @@
 </style>
 
 <template>
-    <div class="link card">
+    <div class="card">
       <div class="image">
         <img :src="show.image.original">
       </div>
