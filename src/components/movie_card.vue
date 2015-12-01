@@ -41,11 +41,11 @@
     ready() {
       var rating = this.$data.movie.imdbRating;
       // rating /= 2;
-      rating = Math.round(rating);
+      rating = Math.round(rating/2);
       $('.' + this.movie.id)
         .rating({
           initialRating: rating,
-          maxRating: 10
+          maxRating: 5
         });
     }
   }

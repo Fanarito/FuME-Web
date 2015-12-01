@@ -1,9 +1,12 @@
 <style scoped>
-
+  .seasons {
+    max-height: 500px;
+    overflow-y: scroll;
+  }
 </style>
 
 <template>
-  <div class="row">
+  <div class="row inforow">
     <div class="four wide column">
       <img v-bind:src="info.image.original" alt="" class="ui medium image">
     </div>
@@ -13,9 +16,10 @@
         {{info.summary}}
       </p>
       <div class="ui divider"></div>
-      Average rating: <div class="ui star rating {{info.id}}"></div>
+      Average rating:
+      <div class="ui star rating {{info.id}}"></div>
     </div>
-    <div class="four wide column">
+    <div class="four wide column seasons">
       <div class="ui huge divided selection list">
         <div v-for="season in seasons" @click="getEpisodes(season.season, $event)" class="item">Season {{ season.season }}</div>
       </div>
@@ -35,7 +39,10 @@
       }
     },
     methods: {
-      getEpisodes: function (season, e) {
+      getEpisodes: function(season, e) {
+        $(e.target).toggleClass('active');
+        $('.item').removeClass('active');
+        this.$dispatch('closeEpisodeDetail');
         this.$dispatch("getEpisodes", season, e)
       }
     },

@@ -3,8 +3,7 @@
 </style>
 
 <template>
-  <div class="three wide column">
-    <div class="ui link card">
+    <div class="link card">
       <div class="image">
         <img :src="show.image.original">
       </div>
@@ -20,7 +19,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -43,8 +41,8 @@
     ready() {
       $('.' + this.show.id)
         .rating({
-          initialRating: Math.round(this.$data.show.rating.average),
-          maxRating: 10
+          initialRating: Math.round(this.$data.show.rating.average/2),
+          maxRating: 5
         })
         .rating('disable');
     }

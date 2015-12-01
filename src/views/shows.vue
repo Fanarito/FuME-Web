@@ -10,8 +10,8 @@
   </div>
   <div v-if="!loading" class="ui mobile reversed equal width stackable grid">
     <div class="column">
-      <div class="ui stackable grid">
-        <tvcard v-for="show in shows" :show="show" v-link="{ name: 'showdetail', params: { id: show.id } }"></tvcard>
+      <div class="ui six stackable cards">
+        <tvcard v-for="show in shows" v-link="{ name: 'showdetail', params: { id: show.id } }" :show="show"></tvcard>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
         format: 'json'
       }, function(json, textStatus) {
         $this.shows = [];
-        json.data.forEach(function(element, index){
+        json.data.forEach(function(element, index) {
           $this.shows.push(element);
         });
         $this.loading = false;
