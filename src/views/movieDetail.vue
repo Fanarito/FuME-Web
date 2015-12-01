@@ -9,17 +9,7 @@
     <div class="ui medium text loader">Loading</div>
   </div>
   <div v-if="!loading" class="ui internally celled grid">
-    <div class="row">
-      <div class="four wide column">
-        <img v-bind:src="movie.Poster" alt="" class="ui medium image">
-      </div>
-      <div class="eight wide column">
-        <h1 class="ui heading">{{movie.Title}}</h1>
-        <p>
-          {{movie.Plot}}
-        </p>
-      </div>
-    </div>
+    <movieinfo :movie="movie"></movieinfo>
   </div>
 </template>
 
@@ -27,7 +17,7 @@
   var $ = window.jQuery;
   export default {
     components: {
-
+      movieinfo: require('../components/movie_info')
     },
     data() {
       return {

@@ -42,7 +42,7 @@
     },
     methods: {
       close: function() {
-        this.$dispatch('close_episode_detail');
+        this.$dispatch('closeEpisodeDetail');
       }
     },
     computed: {

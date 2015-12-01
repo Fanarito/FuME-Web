@@ -16,22 +16,7 @@
   </div>
   <div v-if="!loading" class="ui internally celled centered grid">
     <!-- Show info -->
-    <div class="row">
-      <div class="four wide column">
-        <img v-bind:src="info.image.original" alt="" class="ui medium image">
-      </div>
-      <div class="eight wide column">
-        <h1 class="ui heading">{{info.name}}</h1>
-        <p>
-          {{info.summary}}
-        </p>
-      </div>
-      <div class="four wide column">
-        <div class="ui huge divided selection list">
-          <div v-for="season in seasons" @click="getEpisodes(season.season, $event)" class="item">Season {{ season.season }}</div>
-        </div>
-      </div>
-    </div>
+    <tvinfo v-on:getEpisodes :info="info" :seasons="seasons"></tvinfo>
 
     <div class="row">
       <!-- Loading animation -->
@@ -41,19 +26,12 @@
       <!-- Episode cards -->
       <div v-show="selectedSeason" class="eight wide column">
         <div class="ui centered grid">
-          <div v-for="episode in episodes" class="mobile sixteen wide eight wide computer column">
-            <div class="ui fluid link card" @click="selectEpisode(episode)">
-              <div class="content">
-                <div class="header">{{episode.name}}</div>
-                <div class="meta">Season {{episode.season}} - Episode {{episode.number}}</div>
-                <!--div class="description">{{episode.summary}}</div-->
-              </div>
-            </div>
-          </div>
+            <episodecards v-on:selectEpisode :episodes="episodes"></episodecards>
         </div>
       </div>
+      <!-- Episode details -->
       <div v-if="selectedEpisode" class="eight wide column">
-        <episodedetail v-on:close_episode_detail :episode="selectedEpisode"></episodedetail>
+        <episodedetail v-on:closeEpisodeDetail :episode="selectedEpisode"></episodedetail>
       </div>
     </div>
   </div>
@@ -63,7 +41,9 @@
   var $ = window.jQuery;
   export default {
     components: {
-      episodedetail: require('../components/episode_detail')
+      episodedetail: require('../components/episode_detail'),
+      episodecards: require('../components/episode_cards'),
+      tvinfo: require('../components/tv_info')
     },
     data() {
       return {
@@ -73,7 +53,8 @@
         episodesLoading: false,
         selectedSeason: false,
         episodes: [],
-        selectedEpisode: false
+        selectedEpisode: false,
+        seasons: {}
       }
     },
     methods: {
@@ -91,8 +72,17 @@
         }, function(json, textStatus) {
           $this.info = json.data.info;
           $this.seasons = json.data.seasons;
+          console.log($this.seasons);
           $this.loading = false;
         });
+      }
+    },
+    events: {
+      selectEpisode: function (episode) {
+        this.selectedEpisode = episode;
+      },
+      closeEpisodeDetail: function () {
+        this.selectedEpisode = null;
       },
       getEpisodes: function(season, e) {
         $('.ui.large.divided.selection.list > .item').removeClass('active');
@@ -114,15 +104,6 @@
           $this.episodesLoading = false;
         });
       },
-      selectEpisode: function(episode) {
-        console.log(episode);
-        this.selectedEpisode = episode;
-      }
-    },
-    events: {
-      close_episode_detail: function () {
-        this.selectedEpisode = null;
-      }
     },
     attached() {
       this.loadInfo();
