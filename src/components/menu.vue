@@ -3,7 +3,7 @@
 </style>
 
 <template>
-  <div class="ui top attached menu">
+  <div class="ui fixed menu">
     <a class="item" v-link="{ path: '/' }" @click="goHome()">
       <i class="home icon"></i>
     </a>
