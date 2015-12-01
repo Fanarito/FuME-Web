@@ -43,9 +43,10 @@
     ready() {
       $('.' + this.show.id)
         .rating({
-          initialRating: Math.floor(this.$data.show.rating.average),
+          initialRating: Math.round(this.$data.show.rating.average),
           maxRating: 10
-        });
+        })
+        .rating('disable');
     }
   }
 </script>

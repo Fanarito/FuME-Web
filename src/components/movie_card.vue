@@ -41,7 +41,7 @@
     ready() {
       var rating = this.$data.movie.imdbRating;
       // rating /= 2;
-      rating = Math.floor(rating);
+      rating = Math.round(rating);
       $('.' + this.movie.id)
         .rating({
           initialRating: rating,

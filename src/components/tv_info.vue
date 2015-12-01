@@ -42,7 +42,7 @@
     ready() {
       $('.' + this.info.id)
         .rating({
-          initialRating: Math.floor(this.$data.info.rating.average),
+          initialRating: Math.round(this.$data.info.rating.average),
           maxRating: 10
         })
         .rating('disable');

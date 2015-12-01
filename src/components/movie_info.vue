@@ -31,7 +31,7 @@
     ready() {
       $('.' + this.movie.id)
         .rating({
-          initialRating: Math.floor(this.$data.movie.imdbRating),
+          initialRating: Math.round(this.$data.movie.imdbRating),
           maxRating: 10
         })
         .rating('disable');
