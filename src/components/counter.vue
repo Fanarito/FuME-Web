@@ -1,5 +1,11 @@
 <style scoped>
   .counter {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     max-width: 200px;
     margin: 0 auto;
     height: 200px;

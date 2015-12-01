@@ -27,8 +27,12 @@
 <template>
   <h1 class="header">{{episode.name}}</h1>
   <button @click="close" class="circular ui inverted red icon button"><i class="close icon"></i></button>
-  <div class="blurred">
-    {{episode.summary}}
+  <div class="ui styled accordion">
+    <div class="title">
+      <i class="dropdown icon"></i>
+      Plot
+    </div>
+    <div class="content">{{episode.summary}}</div>
   </div>
 </template>
 <script>
@@ -48,6 +52,8 @@
     computed: {
 
     },
-    ready() {}
+    ready() {
+      $('.ui.accordion').accordion();
+    }
   }
 </script>
