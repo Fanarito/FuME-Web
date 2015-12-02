@@ -25,7 +25,8 @@
     },
     data() {
       return {
-        loading: true
+        loading: true,
+        shows: []
       }
     },
     methods: {

@@ -70,6 +70,7 @@
         $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
           format: 'json'
         }, function(json, textStatus) {
+          json.data.info.summary = json.data.info.summary.replace(/(<([^>]+)>)/ig,"");
           $this.info = json.data.info;
           $this.seasons = json.data.seasons;
           console.log($this.seasons);
@@ -98,6 +99,7 @@
           format: 'json'
         }, function(json, textStatus) {
           json.forEach(function(element, index) {
+            element.summary = element.summary.replace(/(<([^>]+)>)/ig,"");
             $this.episodes.push(element);
           });
           $this.selectedSeason = true;
