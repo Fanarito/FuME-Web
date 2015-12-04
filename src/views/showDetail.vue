@@ -26,7 +26,7 @@
       <!-- Episode cards -->
       <div v-show="selectedSeason" class="eight wide column">
         <div class="ui centered grid">
-            <episodecards v-on:selectEpisode :episodes="episodes"></episodecards>
+          <episodecards v-on:selectEpisode :episodes="episodes"></episodecards>
         </div>
       </div>
       <!-- Episode details -->
@@ -70,7 +70,9 @@
         $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
           format: 'json'
         }, function(json, textStatus) {
-          json.data.info.summary = json.data.info.summary.replace(/(<([^>]+)>)/ig,"");
+          if (json.data.info.summary) {
+            json.data.info.summary = json.data.info.summary.replace(/(<([^>]+)>)/ig, "");
+          }
           $this.info = json.data.info;
           $this.seasons = json.data.seasons;
           console.log($this.seasons);
@@ -79,10 +81,10 @@
       }
     },
     events: {
-      selectEpisode: function (episode) {
+      selectEpisode: function(episode) {
         this.selectedEpisode = episode;
       },
-      closeEpisodeDetail: function () {
+      closeEpisodeDetail: function() {
         this.selectedEpisode = null;
       },
       getEpisodes: function(season, e) {
@@ -99,7 +101,9 @@
           format: 'json'
         }, function(json, textStatus) {
           json.forEach(function(element, index) {
-            element.summary = element.summary.replace(/(<([^>]+)>)/ig,"");
+            if (element.summary) {
+              element.summary = element.summary.replace(/(<([^>]+)>)/ig, "");
+            }
             $this.episodes.push(element);
           });
           $this.selectedSeason = true;
