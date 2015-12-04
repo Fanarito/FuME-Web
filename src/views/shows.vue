@@ -30,19 +30,18 @@
       }
     },
     methods: {
-
+      getShows: function () {
+        var $this = this;
+        $.getJSON('http://django.fanarito.duckdns.org/api/show/', {
+          format: 'json'
+        }, function(json, textStatus) {
+          $this.shows = $this.shows.concat(json.data);
+          $this.loading = false;
+        });
+      }
     },
     attached() {
-      var $this = this;
-      $.getJSON('http://django.fanarito.duckdns.org/api/show/', {
-        format: 'json'
-      }, function(json, textStatus) {
-        $this.shows = [];
-        json.data.forEach(function(element, index) {
-          $this.shows.push(element);
-        });
-        $this.loading = false;
-      });
+      this.getShows();
     },
     detached() {
       this.shows = []
