@@ -35,7 +35,6 @@
 </template>
 
 <script>
-  var $ = window.jQuery;
   export default {
     data() {
       return {

@@ -1,13 +1,13 @@
 <style scoped>
   .counter {
+    display: inline-block;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    max-width: 200px;
-    margin: 0 auto;
+    width: 200px;
     height: 200px;
     transition: transform .3s, box-shadow .3s;
     border-radius: 4px;
@@ -17,6 +17,7 @@
     font-size: 70px;
     text-align: center;
     line-height: 200px;
+    border: 1px solid #e2e2e2;
     cursor: pointer;
     &:hover {
       transform: translateY(-4px);
@@ -35,12 +36,15 @@
   export default {
     data () {
       return {
-        count: 1
+        count: this.$revue.getState().counter
       }
+    },
+    ready () {
+      this.$subscribe('counter as count')
     },
     methods: {
       handleClick () {
-        this.count++
+        this.$revue.dispatch({ type: 'INCREMENT' })
       }
     }
   }

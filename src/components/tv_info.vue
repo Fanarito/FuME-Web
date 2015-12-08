@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  var $ = window.jQuery;
+  //var $ = window.jQuery;
   export default {
     props: {
       info: {

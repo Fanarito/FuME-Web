@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  var $ = window.jQuery;
+  //var $ = window.jQuery;
   export default {
     components: {
       moviecard: require('../components/movie_card')

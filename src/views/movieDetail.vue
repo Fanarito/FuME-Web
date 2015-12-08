@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  var $ = window.jQuery;
+  //var $ = window.jQuery;
   export default {
     components: {
       movieinfo: require('../components/movie_info')

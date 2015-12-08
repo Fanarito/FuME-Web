@@ -20,21 +20,15 @@ module.exports = {
       {
         test: /\.vue$/,
         loaders: ['vue']
-      },
-      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' },
-      {
-        test: /\.css/,
-        loader: "style-loader!css-loader"
       }
     ]
   },
   vue: {
     loaders: {
-      css: 'style!css!postcss'
-    }
-  },
-  postcss: function () {
-    return [
+      css: 'style!css',
+      js: 'babel'
+    },
+    postcss:[
       require('postcss-nested')()
     ]
   },
@@ -42,6 +36,6 @@ module.exports = {
   ],
   babel: {
     presets: ['es2015', 'stage-0'],
-    plugins: ["transform-es2015-arrow-functions"]
+    plugins: ['transform-runtime']
   }
 }
