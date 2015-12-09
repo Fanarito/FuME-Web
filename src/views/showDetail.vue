@@ -67,7 +67,7 @@
         // Make sure there are no left over episodes if you have already viewed this view
         this.episodes = [];
         // Get show info
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
+        $.getJSON(window.source + '/api/show/' + this.showId, {
           format: 'json'
         }, function(json, textStatus) {
           if (json.data.info.summary) {
@@ -97,7 +97,7 @@
 
         this.episodes = [];
 
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId + '/' + season, {
+        $.getJSON(window.source + '/api/show/' + this.showId + '/' + season, {
           format: 'json'
         }, function(json, textStatus) {
           json.forEach(function(element, index) {

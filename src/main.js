@@ -4,6 +4,8 @@ import VueRouter from 'vue-router'
 import Revue from 'revue'
 import store from './store'
 
+window.source = "http://fanarito.duckdns.org";
+
 if (__DEV__) {
   window.ReduxStore = store
 }

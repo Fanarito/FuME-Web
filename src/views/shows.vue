@@ -32,7 +32,7 @@
     methods: {
       getShows: function () {
         var $this = this;
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/', {
+        $.getJSON(window.source + '/api/show/', {
           format: 'json'
         }, function(json, textStatus) {
           $this.shows = $this.shows.concat(json.data);

@@ -28,7 +28,7 @@
     attached() {
       var $this = this;
       this.movie = {};
-      $.getJSON('http://django.fanarito.duckdns.org/api/movie/' + this.$route.params.id, {
+      $.getJSON(window.source + '/api/movie/' + this.$route.params.id, {
         format: 'json'
       }, function(json, textStatus) {
         $this.movie = json;
