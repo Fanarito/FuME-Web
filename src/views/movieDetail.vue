@@ -21,14 +21,29 @@
     },
     data() {
       return {
+        playing: false,
         loading: true,
         movie: {}
+      }
+    },
+    computed: {
+      poster: function() {
+        return "http://fume.fanarito.duckdns.org/images" + this.$data.movie.poster_path;
+      },
+      videoUrl: function() {
+        return "http://fume.fanarito.duckdns.org/play/movies/" + this.$data.movie.id;
+      }
+    },
+    events: {
+      playVideo: function() {
+        $('.ui.basic.modal')
+          .modal('show');
       }
     },
     attached() {
       var $this = this;
       this.movie = {};
-      $.getJSON(window.source + '/api/movie/' + this.$route.params.id, {
+      $.getJSON('http://django.fanarito.duckdns.org/api/movie/' + this.$route.params.id, {
         format: 'json'
       }, function(json, textStatus) {
         $this.movie = json;

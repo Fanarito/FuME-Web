@@ -4,8 +4,6 @@ import VueRouter from 'vue-router'
 import Revue from 'revue'
 import store from './store'
 
-window.source = "http://fanarito.duckdns.org";
-
 if (__DEV__) {
   window.ReduxStore = store
 }
@@ -29,6 +27,10 @@ router.map({
   '/movies/:id': {
     name: 'moviedetail',
     component: require('./views/movieDetail')
+  },
+  '/play/movie/:id': {
+    name: 'movieplayer',
+    component: require('./views/videoPlayer')
   }
 })
 

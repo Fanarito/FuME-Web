@@ -1,17 +1,23 @@
-# FuME-Web
+# VuePack
 
-Web front-end for FuME.
+A starter for Vue and Webpack, Hot-reload, PostCSS, Redux, Revue, Redux-Devtools, Build tools.
 
-Uses:
-* VueJS
-* Semantic-UI
-* VuePack
-* jQuery
+## Cli tool
 
-## Versions
-Development version can be tested at http://node.fanarito.duckdns.org
+![preview](http://ww4.sinaimg.cn/large/a15b4afegw1eynsfgjmlqj20qo0f0wgu)
 
-Production version can be tested at http://fanarito.duckdns.org
+Use [VuePack Cli](https://github.com/egoist/vuepack-cli) to generate a new project:
+
+```bash
+npm install -g vuepack
+vue init hello-vue
+# or if you are located in China
+# vue init hello-vue --cn
+cd hello-vue
+npm run dev
+# wait for webpack to bundle then go to http://localhost:3030
+# use `Ctrl+H` to toggle Redux Dev Panel
+```
 
 ## Usage
 
@@ -21,6 +27,10 @@ Production version can be tested at http://fanarito.duckdns.org
 |npm run dev|Run webpack and server with hot-reload enabled|
 |npm run dev:win|Run dev server on Win32 platform|
 |npm run build|Build assets for production use, dumped in `./build`|
+
+## TODO
+
+VuePack will stay simple for a while, but eventually its goal is to be a Rails-like tool for Vue. Cuz it's definitely a waste of time to configure things, especially front-end stuffs.
 
 ## License
 

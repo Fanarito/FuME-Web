@@ -34,6 +34,10 @@
     </div>
     <div class="content">{{episode.summary}}</div>
   </div>
+  <div class="ui divider"></div>
+  <div class="ui icon buttons">
+    <button class="ui green button"><i class="white play icon"></i></button>
+  </div>
 </template>
 <script>
   //var $ = window.jQuery;
