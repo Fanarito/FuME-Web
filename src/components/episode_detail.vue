@@ -32,7 +32,7 @@
       <i class="dropdown icon"></i>
       Plot
     </div>
-    <div class="content">{{episode.summary}}</div>
+    <div class="content">{{episode.overview}}</div>
   </div>
   <div class="ui divider"></div>
   <div class="ui icon buttons">

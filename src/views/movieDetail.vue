@@ -8,7 +8,7 @@
   <div v-if="loading" class="ui active inverted dimmer">
     <div class="ui medium text loader">Loading</div>
   </div>
-  <div v-if="!loading" class="ui internally celled grid">
+  <div v-if="!loading" class="ui stackable internally celled grid">
     <movieinfo :movie="movie"></movieinfo>
   </div>
 </template>
@@ -43,7 +43,7 @@
     attached() {
       var $this = this;
       this.movie = {};
-      $.getJSON('http://django.fanarito.duckdns.org/api/movie/' + this.$route.params.id, {
+      $.getJSON('http://fanarito.duckdns.org/api/movie/' + this.$route.params.id, {
         format: 'json'
       }, function(json, textStatus) {
         $this.movie = json;

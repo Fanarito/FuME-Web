@@ -5,7 +5,7 @@
 <template>
     <div class="card">
       <div class="image">
-        <img :src="show.image.original">
+        <img :src="poster">
       </div>
       <div class="content">
         <a class="header">{{ show.name }}</a>
@@ -34,14 +34,17 @@
     },
     computed: {
       rating: function() {
-        var rating = this.$data.show.rating.average;
+        var rating = this.$data.show.vote_average;
         return Math.floor(rating);
+      },
+      poster: function () {
+        return "http://fume.fanarito.duckdns.org/images" + this.$data.show.poster_path;
       }
     },
     ready() {
       $('.' + this.show.id)
         .rating({
-          initialRating: Math.round(this.$data.show.rating.average/2),
+          initialRating: Math.round(this.$data.show.vote_average/2),
           maxRating: 5
         })
         .rating('disable');

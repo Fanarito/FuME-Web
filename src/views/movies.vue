@@ -10,7 +10,7 @@
   </div>
   <div v-if="!loading" class="ui mobile reversed equal width stackable grid">
     <div class="column">
-      <div class="ui six stackable link cards">
+      <div class="ui six stackable inverted link cards">
         <moviecard v-for="movie in movies" :movie="movie" v-link="{ name: 'moviedetail', params: { id: movie.id } }"></moviecard>
       </div>
     </div>

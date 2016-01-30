@@ -1,5 +1,4 @@
 <style scoped>
-
 </style>
 
 <template>

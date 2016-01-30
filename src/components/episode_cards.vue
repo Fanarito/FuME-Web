@@ -7,7 +7,7 @@
     <div class="ui fluid link card" @click="selectEpisode(episode)">
       <div class="content">
         <div class="header">{{episode.name}}</div>
-        <div class="meta">Season {{episode.season}} - Episode {{episode.number}}</div>
+        <div class="meta">Season {{episode.season_number}} - Episode {{episode.episode_number}}</div>
       </div>
     </div>
   </div>

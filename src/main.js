@@ -28,7 +28,7 @@ router.map({
     name: 'moviedetail',
     component: require('./views/movieDetail')
   },
-  '/play/movie/:id': {
+  '/play/movie/:id/:subtitles': {
     name: 'movieplayer',
     component: require('./views/videoPlayer')
   }

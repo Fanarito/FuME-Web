@@ -16,8 +16,15 @@
       IMDB Rating: <div class="ui star rating {{movie.id}}"></div>
       <div class="ui divider"></div>
       <div class="ui icon buttons">
-        <button v-link="{ name: 'movieplayer', params: { id: movie.id, hour: 0, min: 0, sec: 0 } }" class="ui green button"><i class="white play icon"></i></button>
+        <button v-link="{ name: 'movieplayer', params: { id: movie.id, subtitles: 0 } }" class="ui green button"><i class="white play icon"></i></button>
+        <button v-link="{ name: 'movieplayer', params: { id: movie.id, subtitles: 1 } }" class="ui button"><i class="white play icon"></i></button>
       </div>
+    </div>
+    <div class="four wide column">
+      <p>Format: {{movie.metadata.format.format_long_name}}</p>
+      <p>Bitrate: {{movie.metadata.format.bit_rate}}</p>
+      <p>Duration: {{movie.metadata.format.duration}}</p>
+      <p>File Size: {{movie.metadata.size}}</p>
     </div>
   </div>
 </template>
@@ -47,6 +54,8 @@
           maxRating: 10
         })
         .rating('disable');
+
+        console.log(this.$data.movie);
     }
   }
 </script>

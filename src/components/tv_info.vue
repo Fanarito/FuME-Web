@@ -8,12 +8,12 @@
 <template>
   <div class="row inforow">
     <div class="four wide column">
-      <img v-bind:src="info.image.original" alt="" class="ui medium image">
+      <img v-bind:src="poster" alt="" class="ui medium image">
     </div>
     <div class="eight wide column">
       <h1 class="ui heading">{{info.name}}</h1>
       <p>
-        {{info.summary}}
+        {{info.overview}}
       </p>
       <div class="ui divider"></div>
       Average rating:
@@ -21,7 +21,7 @@
     </div>
     <div class="four wide column seasons">
       <div class="ui huge divided selection list">
-        <div v-for="season in seasons" @click="getEpisodes(season.season, $event)" class="item">Season {{ season.season }}</div>
+        <div v-for="season in seasons" @click="getEpisodes(season.season_number, $event)" class="item">Season {{ season.season_number }}</div>
       </div>
     </div>
   </div>
@@ -46,10 +46,15 @@
         this.$dispatch("getEpisodes", season, e)
       }
     },
+    computed: {
+      poster: function () {
+        return "http://fume.fanarito.duckdns.org/images" + this.$data.info.poster_path;
+      }
+    },
     ready() {
       $('.' + this.info.id)
         .rating({
-          initialRating: Math.round(this.$data.info.rating.average),
+          initialRating: Math.round(this.$data.info.vote_average),
           maxRating: 10
         })
         .rating('disable');

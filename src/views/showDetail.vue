@@ -14,7 +14,7 @@
   <div v-if="loading" class="ui active inverted dimmer">
     <div class="ui medium text loader">Loading</div>
   </div>
-  <div v-if="!loading" class="ui internally celled centered grid">
+  <div v-if="!loading" class="ui stackable internally celled centered grid">
     <!-- Show info -->
     <tvinfo v-on:getEpisodes :info="info" :seasons="seasons"></tvinfo>
 
@@ -67,12 +67,9 @@
         // Make sure there are no left over episodes if you have already viewed this view
         this.episodes = [];
         // Get show info
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId, {
+        $.getJSON('http://fanarito.duckdns.org/api/show/' + this.showId, {
           format: 'json'
         }, function(json, textStatus) {
-          if (json.data.info.summary) {
-            json.data.info.summary = json.data.info.summary.replace(/(<([^>]+)>)/ig, "");
-          }
           $this.info = json.data.info;
           $this.seasons = json.data.seasons;
           console.log($this.seasons);
@@ -97,7 +94,7 @@
 
         this.episodes = [];
 
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/' + this.showId + '/' + season, {
+        $.getJSON('http://fanarito.duckdns.org/api/show/' + this.showId + '/' + season, {
           format: 'json'
         }, function(json, textStatus) {
           json.forEach(function(element, index) {
