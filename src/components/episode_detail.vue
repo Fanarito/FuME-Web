@@ -36,7 +36,7 @@
   </div>
   <div class="ui divider"></div>
   <div class="ui icon buttons">
-    <button class="ui green button"><i class="white play icon"></i></button>
+    <button v-link="{ name: 'episodeplayer', params: {id: episode.id, subtitles: 0 } }" class="ui green button"><i class="white play icon"></i></button>
   </div>
 </template>
 <script>

@@ -31,7 +31,7 @@
       },
       computed: {
         videoUrl: function() {
-          return "http://fume.fanarito.com/play/movies/" + this.$route.params.id;
+          return "http://fume.fanarito.com/play/episode/" + this.$route.params.id;
         }
       },
       events: {},
@@ -42,7 +42,7 @@
         if (this.$route.params.subtitles > 0){
           this.$data.player.src([{
             type: "video/webm",
-            src: "http://fume.fanarito.com/play/movies/" + this.$route.params.id
+            src: "http://fume.fanarito.com/play/episode/" + this.$route.params.id
           }]);
           /*this.$data.player.track([{
             kind: "subtitles",
@@ -51,7 +51,7 @@
         } else {
           this.$data.player.src([{
             type: "video/webm",
-            src: "http://fume.fanarito.com/play/movies/" + this.$route.params.id
+            src: "http://fume.fanarito.com/play/episode/" + this.$route.params.id
           }]);
         }
       },

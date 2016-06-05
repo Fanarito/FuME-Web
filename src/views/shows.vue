@@ -32,10 +32,10 @@
     methods: {
       getShows: function () {
         var $this = this;
-        $.getJSON('http://django.fanarito.duckdns.org/api/show/', {
+        $.getJSON('http://fume.fanarito.com/shows/', {
           format: 'json'
         }, function(json, textStatus) {
-          $this.shows = $this.shows.concat(json.data);
+          $this.shows = json;
           $this.loading = false;
         });
       }
